@@ -11,7 +11,7 @@ import DisplayApiData from './screens/displayApiData';
 import CustomModal from './screens/customModal';
 import Home from './screens/home';
 import Detail from './screens/detail';
-
+import Form from './screens/form';
 
 
 const StackNavigation = props => {
@@ -27,6 +27,7 @@ const StackNavigation = props => {
             <Stack.Screen name='CustomModal' component={CustomModal}/>
             <Stack.Screen name='Home' component={Home}/>
             <Stack.Screen name='Detail' component={Detail}/>
+            <Stack.Screen name='Form' component={Form}/>
 
         </Stack.Navigator>
     )

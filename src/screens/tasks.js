@@ -27,6 +27,7 @@ const taskList = [
     {
         name: "Implement a Form with Validation",
         id: "5",
+        screen: "Form"
     },
 ]
 

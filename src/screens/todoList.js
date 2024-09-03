@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, TextInput, Alert, Text } from "react-native";
 import styles from './todoListStyle'
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,12 +11,20 @@ const TodoList = () => {
     const [taskList, setTaskList] = useState([])
     const [taskValue, setTaskValue] = useState('')
 
+    const TodoTasks = useMemo(() => {
+        return taskList.filter(item => !item.completed)
+    }, [taskList])
+
+    const CompletedTasks = useMemo(() => {
+        return taskList.filter(item => item.completed)
+    }, [taskList])
+
     useEffect(() => {
         AsyncStorage.getItem("taskList").then(res => {
-            if(res) {
+            if (res) {
                 setTaskList(JSON.parse(res))
             }
-        }).catch(e => {})
+        }).catch(e => { })
     }, [])
 
     useEffect(() => {
@@ -28,7 +36,7 @@ const TodoList = () => {
             ...taskList,
             { name: taskValue, id: new Date().getTime(), completed: false }
         ])
-        
+
         setTaskValue("")
 
     }, [taskList, taskValue])
@@ -46,7 +54,6 @@ const TodoList = () => {
 
     const onPressDelete = useCallback((values) => {
         const { item } = values
-
         Alert.alert('Delete Task', 'Are you sure, wants to delete ?',
             [
                 {
@@ -67,7 +74,7 @@ const TodoList = () => {
         );
     }, [taskList])
 
-    const onPressComplete = useCallback(({item}) => {
+    const onPressComplete = useCallback(({ item }) => {
         let updatedTaskList = [...taskList]
         let findIndex = updatedTaskList.findIndex(taskItem => taskItem.id == item.id)
 
@@ -83,9 +90,40 @@ const TodoList = () => {
         setTaskValue(value)
     }
 
+    const TodoTaskList = props => {
+        if (!TodoTasks) {
+            return null
+        }
+        return (
+            <View style={styles.todoView}>
+                <Text style={styles.name}>TODO Tasks</Text>
+                <List
+                    data={TodoTasks}
+                    onComplete={onPressComplete}
+                    onDelete={onPressDelete}
+                    onEdit={onPressEdit}
+                />
+            </View>
+        )
+    }
+
+    const CompletedTaskList = props => {
+        if (!CompletedTasks) {
+            return null
+        }
+        return (
+            <View style={styles.completedView}>
+                <Text style={styles.name}>Completed Tasks</Text>
+                <List
+                    isCompletedList
+                    data={CompletedTasks}
+                />
+            </View>
+        )
+    }
+
     return (
         <SafeAreaView style={styles.container}>
-            
             <View style={styles.addTaskView}>
                 <TextInput
                     value={taskValue}
@@ -95,22 +133,8 @@ const TodoList = () => {
                 <Button disabled={!taskValue} title={"ADD"} onPress={onPressAdd} />
             </View>
             <View style={{ flex: 1, flexDirection: "row", marginTop: 20 }}>
-                <View style={styles.todoView}>
-                    <Text style={styles.name}>TODO Tasks</Text>
-                    <List
-                        data={taskList.filter(item => !item.completed)}
-                        onComplete={onPressComplete}
-                        onDelete={onPressDelete}
-                        onEdit={onPressEdit}
-                    />
-                </View>
-                <View style={styles.completedView}>
-                    <Text style={styles.name}>Completed Tasks</Text>
-                    <List
-                        isCompletedList
-                        data={taskList.filter(item => item.completed)}
-                    />
-                </View>
+                <TodoTaskList />
+                <CompletedTaskList />
             </View>
 
         </SafeAreaView>
