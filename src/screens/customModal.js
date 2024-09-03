@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styles from './customModalStyle'
 import Modal from "../components/commonComponents/modal";
 
-export default CustomeModal = props => {
+const CustomeModal = props => {
 
     const [showModal, setShowModal] = useState(false)
 
@@ -31,3 +31,4 @@ export default CustomeModal = props => {
         </SafeAreaView>
     )
 }
+export default CustomeModal

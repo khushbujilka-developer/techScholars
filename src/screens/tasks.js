@@ -22,6 +22,7 @@ const taskList = [
     {
         name: "Implement a Simple Navigation Flow",
         id: "4",
+        screen: "Home"
     },
     {
         name: "Implement a Form with Validation",
