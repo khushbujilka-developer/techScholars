@@ -7,16 +7,17 @@ export default StyleSheet.create({
         paddingVertical: 16,
         paddingHorizontal: 16,
     },
-    item: {
-        borderBottomWidth: 1,
-        padding: 10,
-        marginVertical: 10,
-    },
-    todoView:{ flex: 1, borderRightWidth: 1, paddingRight: 10 },
+
     completedView:{ flex: 1, marginLeft: 10 },
     name: {
         fontSize: 16,
         fontWeight: "bold"
+    },
+
+    addTaskView: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     input: {
         flex: 1,
@@ -26,9 +27,6 @@ export default StyleSheet.create({
         marginRight: 12,
         padding: 10,
     },
-    addTaskView: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between"
-    },
+
+ 
 })

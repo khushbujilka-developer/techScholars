@@ -6,7 +6,7 @@ import { Screen } from "react-native-screens";
 const taskList = [
     {
         name: "Create a To-Do List App",
-        screen: "TodoList",
+        screen: "Todo",
         id: "1",
     },
     {
