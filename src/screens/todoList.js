@@ -1,19 +1,34 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { View, TextInput, Alert, Text } from "react-native";
 import styles from './todoListStyle'
 import { SafeAreaView } from "react-native-safe-area-context";
 import Button from "../components/commonComponents/button";
 import List from "../components/todoList/list";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const TodoList = () => {
     const [taskList, setTaskList] = useState([])
     const [taskValue, setTaskValue] = useState('')
+
+    useEffect(() => {
+        AsyncStorage.getItem("taskList").then(res => {
+            if(res) {
+                setTaskList(JSON.parse(res))
+            }
+        }).catch(e => {})
+    }, [])
+
+    useEffect(() => {
+        AsyncStorage.setItem("taskList", JSON.stringify(taskList))
+    }, [taskList])
 
     const onPressAdd = useCallback(() => {
         setTaskList([
             ...taskList,
             { name: taskValue, id: new Date().getTime(), completed: false }
         ])
+        
         setTaskValue("")
 
     }, [taskList, taskValue])
