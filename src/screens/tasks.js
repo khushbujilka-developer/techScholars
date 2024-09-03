@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import styles from './tasksStyle'
+import { Screen } from "react-native-screens";
 
 const taskList = [
     {
@@ -11,6 +12,7 @@ const taskList = [
     {
         name: "Fetch and Display Data from an API",
         id: "2",
+        screen: "DisplayApiData"
     },
     {
         name: "Create a Custom Modal Component",
