@@ -11,7 +11,7 @@ export default FormInput = props => {
     value,
     namestyle,
     type,
-    name
+    name,
   } = props;
 
   return (
@@ -27,8 +27,9 @@ export default FormInput = props => {
         placeholderTextColor={'#888888'}
         value={value}
         keyboardType={type}
-        secureTextEntry={name == "password"}
-        style={styles.inputStyle}/>
+        secureTextEntry={name == 'password'}
+        style={styles.inputStyle}
+      />
       {(matched == false || matched == null) && value ? (
         <Text
           style={[
