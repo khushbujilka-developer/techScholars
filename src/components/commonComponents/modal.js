@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableWithoutFeedback} from 'react-native';
 import styles from './modalStyle';
 import Button from './button';
@@ -18,6 +18,12 @@ export default Modal = props => {
 
   const [isClosed, setIsClosed] = useState(false);
 
+  useEffect(() => {
+    if(isVisible) {
+        setIsClosed(false)   
+    }
+  }, [isVisible])
+
   const onRequestClose = () => {
     setIsClosed(true);
   };
@@ -33,6 +39,7 @@ export default Modal = props => {
   };
 
   const onEndCallBack = () => {
+    console.log("onEndCallBack")
     onClose(false);
   };
 

@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './detailStyle';
 import {useRoute} from '@react-navigation/native';
+import Button from '../components/commonComponents/button';
 
 const Detail = props => {
   const route = useRoute();
@@ -15,6 +16,10 @@ const Detail = props => {
       });
     }
   }, []);
+
+  const onPressBack = () => {
+    props.navigation.goBack()
+  }
 
   const ProductDetail = props => {
     if (!params?.detail) {
@@ -35,6 +40,7 @@ const Detail = props => {
   return (
     <SafeAreaView style={styles.container}>
       <ProductDetail />
+      <Button onPress={onPressBack} title={"Back"} style={{ marginBottom: 20}}/>
     </SafeAreaView>
   );
 };

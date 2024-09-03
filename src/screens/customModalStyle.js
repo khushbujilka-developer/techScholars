@@ -9,6 +9,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  image: {
+    height: width/5, width: width/5,
+    alignSelf: "center",
+    marginBottom: 30
+  },
   btn: {
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,5 +1,5 @@
 import React, {useMemo, useState} from 'react';
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FormInput from '../components/commonComponents/formInput';
@@ -43,6 +43,19 @@ const Form = props => {
     return !isEnable;
   }, [inputs]);
 
+
+  const onPressSubmit = () => {
+    let updatedData = [...inputs]
+    inputs.map((item, index) => {
+        updatedData[index] = {
+            ...updatedData[index],
+            value: ''
+        }
+    })
+    setInputs(updatedData)
+    Alert.alert("Data Submitted!")
+  }
+
   const onChangeText = (item, index, value) => {
     let matched = value?.match(inputs[index].regex);
     if (matched) {
@@ -78,6 +91,7 @@ const Form = props => {
         <Button
           disabled={isSubmitButtonDisable}
           title={'Submit'}
+          onPress={onPressSubmit}
           style={styles.button}
         />
       </View>

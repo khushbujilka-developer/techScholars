@@ -22,6 +22,7 @@ const TodoList = () => {
   }, []);
 
   useEffect(() => {
+    
     AsyncStorage.setItem('taskList', JSON.stringify(taskList));
   }, [taskList]);
 
