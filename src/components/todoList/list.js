@@ -42,7 +42,7 @@ export default List = props => {
     }, [data])
 
     return (
-        <View>
+        <View style={{ flex: 1}}>
             <FlatList
                 data={data}
                 renderItem={renderItem}

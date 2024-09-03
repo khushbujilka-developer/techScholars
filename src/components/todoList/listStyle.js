@@ -4,6 +4,7 @@ import { height, width } from "../../helpers/dimensions";
 
 export default StyleSheet.create({
     container: {
+        flex: 1,
         paddingVertical: 30,
 
     },

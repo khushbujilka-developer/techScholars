@@ -85,6 +85,7 @@ const TodoList = () => {
 
     return (
         <SafeAreaView style={styles.container}>
+            
             <View style={styles.addTaskView}>
                 <TextInput
                     value={taskValue}
@@ -93,7 +94,7 @@ const TodoList = () => {
                     style={styles.input} />
                 <Button disabled={!taskValue} title={"ADD"} onPress={onPressAdd} />
             </View>
-            <View style={{ flexDirection: "row", marginTop: 20 }}>
+            <View style={{ flex: 1, flexDirection: "row", marginTop: 20 }}>
                 <View style={styles.todoView}>
                     <Text style={styles.name}>TODO Tasks</Text>
                     <List
