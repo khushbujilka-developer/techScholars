@@ -8,6 +8,7 @@ const Stack = createNativeStackNavigator();
 import TodoList from './screens/todoList';
 import Tasks from './screens/tasks';
 import DisplayApiData from './screens/displayApiData';
+import CustomModal from './screens/customModal';
 
 
 
@@ -21,6 +22,7 @@ const StackNavigation = props => {
             <Stack.Screen name='Tasks' component={Tasks}/>
             <Stack.Screen name='TodoList' component={TodoList} />
             <Stack.Screen name='DisplayApiData' component={DisplayApiData}/>
+            <Stack.Screen name='CustomModal' component={CustomModal}/>
 
         </Stack.Navigator>
     )

@@ -17,6 +17,7 @@ const taskList = [
     {
         name: "Create a Custom Modal Component",
         id: "3",
+        screen: "CustomModal"
     },
     {
         name: "Implement a Simple Navigation Flow",
