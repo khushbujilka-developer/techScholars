@@ -47,7 +47,7 @@ const TodoList = () => {
       </View>
       <View style={{flex: 1, flexDirection: 'row', marginTop: 20}}>
         <TodoTasksList taskList={taskList} setTaskList={setTaskList} />
-        <CompletedTaskList taskList={taskList} />
+        <CompletedTaskList taskList={taskList} setTaskList={setTaskList} />
       </View>
     </SafeAreaView>
   );

@@ -13,7 +13,7 @@ import Button from '../commonComponents/button';
 import {width} from '../../helpers/dimensions';
 
 export default List = props => {
-  const {data, onComplete, isCompletedList, onDelete, onEdit} = props;
+  const {data, onComplete, isCompletedList, onDelete, onEdit, deleteCompltedTask} = props;
   const [taskIndexToEdit, setTaskIndexToEdit] = useState(null);
   const [taskValue, setTaskValue] = useState('');
 
@@ -27,14 +27,23 @@ export default List = props => {
     setTaskIndexToEdit(index);
   };
 
+  const setIsChecked = values => {
+    if(isCompletedList) {
+      deleteCompltedTask(values)
+      return
+    }
+    onComplete(values)
+  }
+
   const renderItem = useCallback(
     ({item, index}) => {
       return (
         <View key={String(new Date().getTime())} style={styles.item}>
           <View style={[styles.row, {paddingVertical: 15}]}>
             <CheckBox
-              disabled={isCompletedList}
-              setIsChecked={() => onComplete({index, item})}
+            isCompletedList={isCompletedList}
+              // disabled={isCompletedList}
+              setIsChecked={() => setIsChecked({index, item})}
               isChecked={item.completed}
             />
             <View style={{marginLeft: 10}}>
